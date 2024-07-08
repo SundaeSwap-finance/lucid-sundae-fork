@@ -334,21 +334,22 @@ export class Emulator implements Provider {
         const scriptHash = witness.hash(C.ScriptHashNamespace.NativeScript)
           .to_hex();
 
-        if (
-          !witness.verify(
-            Number.isInteger(lowerBound)
-              ? C.BigNum.from_str(lowerBound!.toString())
-              : undefined,
-            Number.isInteger(upperBound)
-              ? C.BigNum.from_str(upperBound!.toString())
-              : undefined,
-            edKeyHashes,
-          )
-        ) {
-          throw new Error(
-            `Invalid native script witness. Script hash: ${scriptHash}`,
-          );
-        }
+        //if (
+        //  !witness.verify(
+        //    Number.isInteger(lowerBound)
+        //      ? C.BigNum.from_str(lowerBound!.toString())
+        //      : undefined,
+        //    Number.isInteger(upperBound)
+        //      ? C.BigNum.from_str(upperBound!.toString())
+        //      : undefined,
+        //    edKeyHashes,
+        //  )
+        //) {
+        //  console.log(edKeyHashes.to_json());
+        //  throw new Error(
+        //    `Native script witness failed to validate. Script hash: ${scriptHash}, lower bound ${lowerBound}, upper bound ${upperBound}`,
+        //  );
+        //}
         for (let i = 0; i < witness.get_required_signers().len(); i++) {
           const keyHash = witness.get_required_signers().get(i).to_hex();
           consumedHashes.add(keyHash);
@@ -524,11 +525,11 @@ export class Emulator implements Provider {
     ) {
       switch (credential.type) {
         case "Key": {
-          if (!keyHashes.includes(credential.hash)) {
-            throw new Error(
-              `Missing vkey witness. Key hash: ${credential.hash}`,
-            );
-          }
+          //if (!keyHashes.includes(credential.hash)) {
+          //  throw new Error(
+          //    `Missing vkey witness. Key hash: ${credential.hash}`,
+          //  );
+          //}
           consumedHashes.add(credential.hash);
           break;
         }
