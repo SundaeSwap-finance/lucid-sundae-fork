@@ -589,7 +589,7 @@ export function networkToId(network: Network): number {
     case "Preprod":
       return 0;
     case "Custom":
-      return 0;
+      return 1;
     case "Mainnet":
       return 1;
     default:

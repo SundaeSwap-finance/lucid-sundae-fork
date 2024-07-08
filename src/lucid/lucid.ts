@@ -236,7 +236,7 @@ export class Lucid {
       // deno-lint-ignore require-await
       address: async (): Promise<Address> =>
         C.EnterpriseAddress.new(
-          this.network === "Mainnet" ? 1 : 0,
+          (this.network === "Mainnet" || this.network === "Custom") ? 1 : 0,
           C.StakeCredential.from_keyhash(pubKeyHash),
         )
           .to_address()
